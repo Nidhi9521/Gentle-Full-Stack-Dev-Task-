@@ -7,11 +7,11 @@ export default function Home() {
   const API_BASE =
     process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
   const [items, setItems] = useState<any>([]);
-  const [favourites, setFavourites] = useState<any>([]);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<any>(null);
   const [openDetail, setDetail] = useState<any>(null);
+  const [loader, setLoader] = useState(false);
   // filter chips (All / Pinned / Gainers /Losers)
   const [filterChip, setFilterChip] = useState<string>("all");
 
@@ -173,7 +173,18 @@ export default function Home() {
             placeholder="₹ amount · min 100"
           />
           <div className="units">≈ {openDetail?.circulating_supply} BTC</div>
-          <button className="invest">Invest now</button>
+          <button
+            className="invest"
+            onClick={() => {
+              setLoader(true);
+              setTimeout(() => {
+                alert("Invested successfully");
+                setLoader(false);
+              }, 3000);
+            }}
+          >
+            {loader ? "Processing..." : "Invest now"}
+          </button>
         </div>
       )}
     </main>
