@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Gentle — Watchlist (Reference Screen)</title>
+<style>
+:root{--bg:#0d0d10;--card:#16161b;--line:#222228;--txt:#f2f0e9;--mut:#6a6a75;--sec:#8a8a96;--grn:#4dd39f;--red:#ef7a7a;--gold:#e8b84b;--cream:#e8e6df}
+*{box-sizing:border-box;margin:0;font-family:'Inter',system-ui,sans-serif}
+body{background:#151518;display:flex;justify-content:center;padding:40px;gap:28px;flex-wrap:wrap}
+.phone{width:340px;background:var(--bg);border:1px solid #26262c;border-radius:32px;padding:22px 18px;position:relative;overflow:hidden}
+.glow{position:absolute;width:220px;height:220px;border-radius:50%;filter:blur(70px);opacity:.35;pointer-events:none}
+.kicker{font-size:11px;letter-spacing:.22em;color:var(--mut);text-transform:uppercase}
+h1{font-size:26px;font-weight:500;color:var(--txt);letter-spacing:-.02em}
+.iconbtn{width:38px;height:38px;border-radius:50%;background:#1c1c22;border:1px solid #2c2c34;color:#c9c7bf;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.search{background:var(--card);border:1px solid #2c2c34;color:var(--txt);border-radius:14px;height:46px;width:100%;padding:0 14px;font-size:14px;margin:12px 0 10px}
+.search::placeholder{color:#55555f}
+.chips{display:flex;gap:6px;margin-bottom:14px}
+.chip{font-size:11px;padding:5px 12px;border-radius:20px;border:1px solid #2c2c34;color:var(--sec);cursor:pointer}
+.chip.on{background:var(--cream);color:var(--bg);border-color:var(--cream)}
+.row{display:flex;align-items:center;gap:12px;padding:13px 12px;margin-bottom:8px;background:var(--card);border:1px solid var(--line);border-radius:16px;cursor:pointer}
+.logo{width:40px;height:40px;border-radius:13px;background:#1c1c22;border:1px solid #2c2c34;display:flex;align-items:center;justify-content:center;font-size:15px}
+.nm{font-size:14px;font-weight:500;color:var(--txt)}.sym{font-size:11px;letter-spacing:.12em;color:var(--mut)}
+.pr{font-size:13.5px;font-weight:500;color:var(--cream);font-variant-numeric:tabular-nums;text-align:right}
+.chg{font-size:11px;text-align:right}.up{color:var(--grn)}.dn{color:var(--red)}
+.star{color:#4a4a55;font-size:16px}.star.fav{color:var(--gold)}
+/* detail screen */
+.badge{margin-left:auto;font-size:11px;padding:4px 10px;border-radius:12px;background:#12241c;color:var(--grn);border:1px solid #1d5c44}
+.bigprice{font-size:34px;font-weight:500;color:var(--txt);margin:14px 0 2px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stats{display:flex;gap:8px;margin:14px 0}
+.stat{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px}
+.stat .l{font-size:10px;letter-spacing:.15em;color:var(--mut)}.stat .v{font-size:14px;font-weight:500;color:var(--cream);margin-top:2px}
+.units{font-size:12px;color:var(--mut);margin:6px 0 14px}
+.invest{width:100%;height:52px;border:none;border-radius:26px;background:var(--cream);color:var(--bg);font-size:15px;font-weight:500;letter-spacing:.06em;cursor:pointer}
+</style>
+</head>
+<body>
+
+<!-- ===================== SCREEN 1: WATCHLIST ===================== -->
+<div class="phone">
+  <div class="glow" style="background:#7f77dd;top:-90px;right:-70px"></div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;position:relative">
+    <div><div class="kicker">Portfolio</div><h1>watchlist</h1></div>
+    <div class="iconbtn" title="refresh">⟳</div>
+  </div>
+  <input class="search" placeholder="Search assets"/>
+  <div class="chips">
+    <span class="chip on">All</span><span class="chip">Pinned</span><span class="chip">Gainers</span><span class="chip">Losers</span>
+  </div>
+
+  <div class="row">
+    <div class="logo" style="color:#e8b84b">₿</div>
+    <div style="flex:1"><div class="nm">Bitcoin 📌</div><div class="sym">BTC</div></div>
+    <div><div class="pr">₹52,34,110</div><div class="chg up">▲ 2.4%</div></div>
+    <span class="star fav">★</span>
+  </div>
+  <div class="row">
+    <div class="logo" style="color:#afa9ec">Ξ</div>
+    <div style="flex:1"><div class="nm">Ethereum</div><div class="sym">ETH</div></div>
+    <div><div class="pr">₹2,78,450</div><div class="chg dn">▼ 1.1%</div></div>
+    <span class="star">☆</span>
+  </div>
+  <div class="row">
+    <div class="logo" style="color:#5dcaa5">S</div>
+    <div style="flex:1"><div class="nm">Solana</div><div class="sym">SOL</div></div>
+    <div><div class="pr">₹14,980</div><div class="chg up">▲ 4.8%</div></div>
+    <span class="star">☆</span>
+  </div>
+  <div class="row">
+    <div class="logo" style="color:#85b7eb">X</div>
+    <div style="flex:1"><div class="nm">Ripple</div><div class="sym">XRP</div></div>
+    <div><div class="pr">₹192.35</div><div class="chg dn">▼ 0.6%</div></div>
+    <span class="star">☆</span>
+  </div>
+</div>
+
+<!-- ===================== SCREEN 2: DETAIL ===================== -->
+<div class="phone">
+  <div class="glow" style="background:#1d9e75;top:-80px;left:-80px"></div>
+  <div style="display:flex;align-items:center;gap:12px;position:relative">
+    <div class="logo" style="width:48px;height:48px;color:#e8b84b">₿</div>
+    <div><div class="nm" style="font-size:17px">Bitcoin</div><div class="sym">BTC · RANK 1</div></div>
+    <div class="badge">+2.4%</div>
+  </div>
+  <div class="bigprice">₹52,34,110</div>
+  <div style="font-size:12px;color:var(--mut)">≈ $62,940 · updated moments ago</div>
+
+  <svg viewBox="0 0 280 100" style="width:100%;margin:14px 0 0">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1d9e75" stop-opacity=".28"/><stop offset="100%" stop-color="#1d9e75" stop-opacity="0"/>
+    </linearGradient></defs>
+    <path d="M5 78 L40 66 L75 72 L110 50 L145 58 L180 34 L215 42 L250 22 L275 14 L275 100 L5 100 Z" fill="url(#g)"/>
+    <path d="M5 78 L40 66 L75 72 L110 50 L145 58 L180 34 L215 42 L250 22 L275 14" fill="none" stroke="#4dd39f" stroke-width="2.6" stroke-linecap="round"/>
+    <circle cx="275" cy="14" r="4" fill="#4dd39f"/>
+  </svg>
+
+  <div class="stats">
+    <div class="stat"><div class="l">24H HIGH</div><div class="v">₹53,10,020</div></div>
+    <div class="stat"><div class="l">24H LOW</div><div class="v">₹51,02,485</div></div>
+    <div class="stat"><div class="l">MKT CAP</div><div class="v">₹103L Cr</div></div>
+  </div>
+
+  <input class="search" style="margin:0 0 6px" placeholder="₹ amount · min 100"/>
+  <div class="units">≈ 0.000000 BTC</div>
+  <button class="invest">Invest now</button>
+</div>
+
+</body>
+</html>
