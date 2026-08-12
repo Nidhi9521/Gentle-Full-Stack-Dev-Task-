@@ -40,3 +40,40 @@ export const getInstruments = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const addToPin = async (req:Request, res:Response) => {
+try {
+    const { id } = req.params;
+    const filePath = path.join(__dirname, '../../instruments.json');
+    const jsonData = fs.readFileSync(filePath, 'utf8');
+    const instruments = JSON.parse(jsonData);
+    let data = instruments
+    const instrument = instruments.find((x:any)=>x.id==id)
+    if (!instrument) {
+      return res.status(404).json({ success: false, error: 'Instrument not found' });
+    }
+    instrument.pinned = !instrument.pinned;
+    fs.writeFileSync(filePath, JSON.stringify(data),(error:any)=>{
+      if(error){
+        return res.status(500).json({
+            success: false,
+            error: 'Database connection failed or query error',
+            details: error.message,
+          });
+      }
+      res.json({ success: true, data: instrument });
+     
+    });
+    
+       
+    
+} catch (error:any) {
+   console.error('Error fetching users from database:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Database connection failed or query error',
+      details: error.message,
+    });
+}
+
+}

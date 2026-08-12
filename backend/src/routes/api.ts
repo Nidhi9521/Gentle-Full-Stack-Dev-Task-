@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getInstruments } from '../controllers/instrumentController';
+import { addToPin, getInstruments } from '../controllers/instrumentController';
 
 const router = Router();
 
@@ -14,5 +14,6 @@ router.get('/health', (req, res) => {
 
 // GET instruments route
 router.get('/instruments', getInstruments);
+router.post('/instrument/:id/pin',addToPin);
 
 export default router;

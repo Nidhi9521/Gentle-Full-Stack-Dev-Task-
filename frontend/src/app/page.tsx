@@ -12,7 +12,6 @@ export default function Home() {
   const [error, setError] = useState<any>(null);
   const [openDetail, setDetail] = useState<any>(null);
   const [loader, setLoader] = useState(false);
-  // filter chips (All / Pinned / Gainers /Losers)
   const [filterChip, setFilterChip] = useState<string>("all");
 
   useEffect(() => {
@@ -32,14 +31,27 @@ export default function Home() {
     }, 3000);
   }, [query, filterChip]);
 
+  const addToPin = async (id: string) => {
+    try {
+      const res = await fetch(`${API}/instrument/${id}/pin`, {
+        method: "POST",
+      });
+      const data = await res.json();
+      if (data.success) {
+        await refetch();
+      }
+    } catch (error) {
+      console.error("Error adding to pin:", error);
+    }
+  };
   // Poll for live prices every 15s
   const refetch = useCallback(async () => {
     const res = await fetch(
-      `${API}/instruments?${query && `q=${query}&`}${filterChip && `filterchip=${filterChip}`}`,
+      `${API_BASE}/instruments?${query && `q=${query}&`}${filterChip && `filterchip=${filterChip}`}`,
     );
     const data = await res.json();
-    setItems(data.items);
-  }, [query, filterChip]);
+    setItems(data.data);
+  }, [query, filterChip, items]);
 
   const formatINR = (n: number) => n + "₹";
   if (loading) return <div className="p-8">Loading…</div>;
@@ -110,7 +122,14 @@ export default function Home() {
                 {item.price_change_24h_percentage}%
               </div>
             </div>
-            <span className="star fav">★</span>
+            <span
+              className="star fav"
+              onClick={(e) => {
+                addToPin(item.id);
+              }}
+            >
+              {item.pinned ? "✓" : "★"}
+            </span>
           </div>
         ))}
       </div>
